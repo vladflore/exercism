@@ -7,13 +7,12 @@ Invalid strands raise a `DomainError`.
 
 """
 function count_nucleotides(strand)
-    valid_nucleotides = ['A','C','G','T']
-    d = Dict(n => 0 for n ∈ valid_nucleotides)
+    d = Dict(n => 0 for n ∈ ['A','C','G','T'])
     for nucleotide ∈ strand
-        if nucleotide ∉ valid_nucleotides
-            throw(DomainError("Invalid nucleotide $nucleotide"))
+        if nucleotide ∉ keys(d)
+            throw(DomainError("$nucleotide","Invalid nucleotide"))
         end
-        d[nucleotide] = d[nucleotide] + 1
+        d[nucleotide] += 1
     end
     return d
 end

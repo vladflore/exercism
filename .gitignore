@@ -1,2 +1,8 @@
 julia/*/.exercism/
 julia/*/*.ipynb
+java/*/.exercism/
+java/*/.settings/
+java/*/bin/
+java/*/build/
+java/*/.classpath
+java/*/.gradle/
