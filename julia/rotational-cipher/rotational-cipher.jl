@@ -1,11 +1,12 @@
+const NUMBER_OF_LETTERS = 26
+
 function rotate(key, input::Char)
-    transposed = Int(input) + key
-    if input in 'a':'z'
-        return transposed <= 122 ? Char(transposed) : 'a' + transposed % 122 - 1
-    elseif input in 'A':'Z'
-        return transposed <= 90 ? Char(transposed) : 'A' + transposed % 90 - 1
+    if !isletter(input)
+        return input
     end
-    return input
+    first_letter = islowercase(input) ? 'a' : 'A'
+    initial_pos = input - first_letter
+    return first_letter + (initial_pos + key) % NUMBER_OF_LETTERS
 end
 
 function rotate(key, input::String)
