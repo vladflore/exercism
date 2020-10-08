@@ -1,7 +1,7 @@
 const NUMBER_OF_LETTERS = 26
 
 function rotate(key, input::Char)
-    if !isletter(input)
+    if input ∉ 'a':'z' && input ∉ 'A':'Z'
         return input
     end
     first_letter = islowercase(input) ? 'a' : 'A'
