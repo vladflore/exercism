@@ -12,3 +12,5 @@ java/*/.project
 java/*/gradlew
 java/*/gradlew.bat
 java/.idea/
+python/*/.exercism/
+python/*/__pycache__/
