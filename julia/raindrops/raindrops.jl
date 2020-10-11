@@ -1,5 +1,25 @@
 function raindrops(number)
-    d = Dict(3 => "Pling", 5 => "Plang", 7 => "Plong")
-    sound = join(map(n -> d[n], filter(n -> number % n == 0, [3,5,7])))
-    length(sound) == 0 ? string(number) : sound
+    if number % 3 == 0
+        if number % 5 == 0
+            if number % 7 == 0
+                return "PlingPlangPlong"
+            else
+                return "PlingPlang"
+            end
+        elseif number % 7 == 0
+            return "PlingPlong"
+        else
+            return "Pling"
+        end
+    elseif number % 5 == 0
+        if number % 7 == 0
+            return "PlangPlong"
+        else
+            return "Plang"
+        end
+    elseif number % 7 == 0
+        return "Plong"
+    else
+        return string(number)
+    end
 end
