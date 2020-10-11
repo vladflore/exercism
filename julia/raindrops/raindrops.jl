@@ -1,25 +1,5 @@
 function raindrops(number)
-    if number % 3 == 0
-        if number % 5 == 0
-            if number % 7 == 0
-                return "PlingPlangPlong"
-            else
-                return "PlingPlang"
-            end
-        elseif number % 7 == 0
-            return "PlingPlong"
-        else
-            return "Pling"
-        end
-    elseif number % 5 == 0
-        if number % 7 == 0
-            return "PlangPlong"
-        else
-            return "Plang"
-        end
-    elseif number % 7 == 0
-        return "Plong"
-    else
-        return string(number)
-    end
+    has_factor(f) = number % f == 0
+    rain = (has_factor(3) ? "Pling" : "") * (has_factor(5) ? "Plang" : "") * (has_factor(7) ? "Plong" : "")  
+    length(rain) == 0 ? string(number) : rain
 end
