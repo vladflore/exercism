@@ -1,18 +1,17 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Gigasecond {
-
+    private static final long GIGASECOND = 1_000_000_000;
+    
     private final LocalDateTime momentAfter;
-    private final long gigasecond = 1000000000;
 
     public Gigasecond(LocalDate moment) {
-        momentAfter = LocalDateTime.of(moment, LocalTime.of(0, 0, 0)).plusSeconds(gigasecond);
+        momentAfter = moment.atStartOfDay().plusSeconds(GIGASECOND);
     }
 
     public Gigasecond(LocalDateTime moment) {
-        momentAfter = moment.plusSeconds(gigasecond);
+        momentAfter = moment.plusSeconds(GIGASECOND);
     }
 
     public LocalDateTime getDateTime() {
