@@ -18,6 +18,6 @@ def convert_v2(number):
 
 
 def convert(number):
-    rain = [s for f, s in [(3, 'Pling'), (5, 'Plang'),
-                           (7, 'Plong')] if number % f == 0]
-    return ''.join(rain) if rain else str(number)
+    drops = [(3, 'Pling'), (5, 'Plang'), (7, 'Plong')]
+    rain = ''.join(sound for factor, sound in drops if number % factor == 0)
+    return rain if len(rain) != 0 else str(number)
