@@ -2,7 +2,7 @@ import unittest
 
 from high_scores import latest, personal_best, personal_top_three
 
-# Tests adapted from `problem-specifications//canonical-data.json` @ v4.0.0
+# Tests adapted from `problem-specifications//canonical-data.json`
 
 
 class HighScoresTest(unittest.TestCase):
@@ -40,6 +40,16 @@ class HighScoresTest(unittest.TestCase):
         scores = [40]
         expected = [40]
         self.assertEqual(personal_top_three(scores), expected)
+
+    def test_personal_best_without_losing_data(self):
+        scores = [40, 100, 70]
+        personal_best(scores)
+        self.assertEqual(scores, [40, 100, 70])
+
+    def test_personal_top_without_losing_data(self):
+        scores = [20, 10, 30]
+        personal_top_three(scores)
+        self.assertEqual(scores, [20, 10, 30])
 
 
 if __name__ == "__main__":
