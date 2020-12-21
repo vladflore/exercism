@@ -15,3 +15,5 @@ java/.idea/
 python/*/.exercism/
 python/*/__pycache__/
 python/*/.vscode
+python/*/.idea
+
