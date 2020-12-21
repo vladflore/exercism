@@ -27,9 +27,10 @@ def recite(start_verse, end_verse):
         "eleven Pipers Piping",
         "twelve Drummers Drumming",
     ]
-    ans = ''
+    ans = []
     for d in range(start_verse-1, end_verse):
-        presents = ', '.join(
+        day_presents = ', '.join(
             reversed(all_presents[1:d+1])) + (', and ' if d > 0 else '') + all_presents[0]
-        ans += f'On the {days[d]} day of Christmas my true love gave to me: {presents}.'
-    return [ans]
+        ans.append(
+            f'On the {days[d]} day of Christmas my true love gave to me: {day_presents}.')
+    return ans
