@@ -3,11 +3,11 @@
 This repo contains my implementations for the exercises from some of the Exercism tracks:
 * [Java Track](java)
 * [Julia Track](julia)
-* [Python track](python)
+* [Python Track](python)
 
 > **_NOTE 1:_**
 > 
-> The code is reviewed by other people and such some implementations have multiple iterations.
+> The code is reviewed by other people, therefore some solutions may have multiple iterations.
 
 > **_NOTE 2:_**
 > In case Julia language is new to you, check this [link](https://julialang.org/).
