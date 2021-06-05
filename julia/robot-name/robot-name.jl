@@ -8,6 +8,9 @@ mutable struct Robot
 end
 
 function reset!(instance::Robot)
+    if length(allnames) == 676000
+        error("there are no more available robot names")
+    end
     n = generatename()
     while n in allnames
         n = generatename()
