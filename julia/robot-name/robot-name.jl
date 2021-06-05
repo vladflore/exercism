@@ -1,29 +1,24 @@
+using Random
+
 const allnames = Set{String}()
 
 mutable struct Robot
     name::String
-    function Robot()
-        r = new()
-        r.name = uniquename()
-        push!(allnames, r.name)
-        return r
-    end
+    Robot() = reset!(new())
 end
 
-function uniquename()::String
+function reset!(instance::Robot)
     n = generatename()
     while n in allnames
         n = generatename()
     end
-    return n
+    push!(allnames, n)
+    instance.name = n
+    return instance
 end
 
 function generatename()
-    return "$(rand('A':'Z') * rand('A':'Z'))" * lpad(string(rand(1:999)), 3, '0')
-end
-
-function reset!(instance::Robot)
-    instance.name = uniquename()
+    return randstring('A':'Z', 2) * randstring('0':'9', 3) 
 end
 
 function name(instance::Robot)
