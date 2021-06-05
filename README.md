@@ -2,6 +2,7 @@
 
 This repo contains my implementations for the exercises from some of the Exercism tracks:
 * [Java Track](java)
+* [Kotlin Track](kotlin)
 * [Julia Track](julia)
 * [Python Track](python)
 
