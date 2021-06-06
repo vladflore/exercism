@@ -4,7 +4,7 @@ const usednames = Set{String}()
 const MAX_AVAILABLE_NAMES = 676000
 
 function generatepossiblenames()
-    result = Vector{String}(undef, MAX_AVAILABLE_NAMES)
+    result = Dict()
     letters = 'A':'Z'
     digits = '0':'9'
     idx = 1
@@ -27,17 +27,15 @@ function reset!(instance::Robot)
     if length(usednames) == MAX_AVAILABLE_NAMES
         error("there are no more available robot names")
     end
-    n = generatename()
-    while n in usednames
-        n = generatename()
-    end
-    push!(usednames, n)
-    instance.name = n
+    instance.name = generatename()
+    push!(usednames, instance.name)
     return instance
 end
 
 function generatename()
-    return rand(possiblenames)
+    newName = rand(possiblenames)
+    delete!(possiblenames, newName.first)
+    return newName.second
 end
 
 function name(instance::Robot)
