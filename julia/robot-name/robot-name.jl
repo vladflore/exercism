@@ -1,6 +1,22 @@
 using Random
 
-const allnames = Set{String}()
+const usednames = Set{String}()
+const MAX_AVAILABLE_NAMES = 676000
+
+function generatepossiblenames()
+    result = Vector{String}(undef, MAX_AVAILABLE_NAMES)
+    letters = 'A':'Z'
+    digits = '0':'9'
+    idx = 1
+    for c1 in letters, c2 in letters, d1 in digits, d2 in digits, d3 in digits
+        name = c1 * c2 * d1 * d2 * d3
+        result[idx] = name
+        idx += 1
+    end
+    return result
+end
+
+const possiblenames = generatepossiblenames()
 
 mutable struct Robot
     name::String
@@ -8,20 +24,20 @@ mutable struct Robot
 end
 
 function reset!(instance::Robot)
-    if length(allnames) == 676000
+    if length(usednames) == MAX_AVAILABLE_NAMES
         error("there are no more available robot names")
     end
     n = generatename()
-    while n in allnames
+    while n in usednames
         n = generatename()
     end
-    push!(allnames, n)
+    push!(usednames, n)
     instance.name = n
     return instance
 end
 
 function generatename()
-    return randstring('A':'Z', 2) * randstring('0':'9', 3) 
+    return rand(possiblenames)
 end
 
 function name(instance::Robot)
