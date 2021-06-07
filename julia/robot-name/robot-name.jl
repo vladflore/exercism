@@ -1,37 +1,24 @@
 using Random
 
 const rng = MersenneTwister()
+const letters = 'A':'Z'
+const digits = '0':'9'
 
-function generatepossiblenames()
-    result = String[]
-    letters = 'A':'Z'
-    digits = '0':'9'
-    for c1 in letters, c2 in letters, d1 in digits, d2 in digits, d3 in digits
-        name = c1 * c2 * d1 * d2 * d3
-        push!(result, name)
-    end
-    println("Done generating all possible names")
-    return result
-end
-
-const possiblenames = generatepossiblenames()
+const possiblenames = [c1 * c2 * d1 * d2 * d3 for c1 in letters for c2 in letters for d1 in digits for d2 in digits for d3 in digits]
+shuffle!(rng, possiblenames)
 
 mutable struct Robot
     name::String
-    Robot() = reset!(new())
+    Robot() = new(generatename!())
 end
 
 function reset!(instance::Robot)
-    if length(possiblenames) == 0
-        error("there are no more available robot names")
-    end
-    instance.name = generatename()
+    instance.name = generatename!()
     return instance
 end
 
-function generatename()
-    shuffle!(rng, possiblenames)
-    return pop!(possiblenames)
+function generatename!()
+    isempty(possiblenames) ? error("there are no more available robot names") : pop!(possiblenames)
 end
 
 function name(instance::Robot)
