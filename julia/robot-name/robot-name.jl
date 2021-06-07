@@ -1,18 +1,16 @@
 using Random
 
-const usednames = Set{String}()
-const MAX_AVAILABLE_NAMES = 676000
+const rng = MersenneTwister()
 
 function generatepossiblenames()
-    result = Dict()
+    result = String[]
     letters = 'A':'Z'
     digits = '0':'9'
-    idx = 1
     for c1 in letters, c2 in letters, d1 in digits, d2 in digits, d3 in digits
         name = c1 * c2 * d1 * d2 * d3
-        result[idx] = name
-        idx += 1
+        push!(result, name)
     end
+    println("Done generating all possible names")
     return result
 end
 
@@ -24,18 +22,16 @@ mutable struct Robot
 end
 
 function reset!(instance::Robot)
-    if length(usednames) == MAX_AVAILABLE_NAMES
+    if length(possiblenames) == 0
         error("there are no more available robot names")
     end
     instance.name = generatename()
-    push!(usednames, instance.name)
     return instance
 end
 
 function generatename()
-    newName = rand(possiblenames)
-    delete!(possiblenames, newName.first)
-    return newName.second
+    shuffle!(rng, possiblenames)
+    return pop!(possiblenames)
 end
 
 function name(instance::Robot)
