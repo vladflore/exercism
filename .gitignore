@@ -21,3 +21,5 @@ kotlin/*/.gradle
 kotlin/*/build
 kotlin/*/.idea
 
+jq/shopping/.exercism
+jq/shopping/.idea
