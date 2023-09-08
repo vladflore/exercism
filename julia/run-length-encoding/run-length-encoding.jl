@@ -1,28 +1,33 @@
 function encode(s)
-    count = 1
-    ans = []
-    for idx in 2:length(s)
-        if s[idx] == s[idx - 1]
-            count += 1
+    encoded = []
+    for i in eachindex(s)
+        if i == 1
+            push!(encoded, [1, s[i]])
+        elseif s[i] == s[i-1]
+            encoded[end][1] += 1
         else
-            if count > 1
-                push!(ans, count)
-            end
-            push!(ans, s[idx - 1])
-            count = 1
-        end
-        if idx == length(s)
-            if count > 1
-                push!(ans, count)
-            end
-            push!(ans, s[idx])
+            push!(encoded, [1, s[i]])
         end
     end
-    join(ans)
+    return join(map(x -> x[1] == 1 ? x[2] : "$(x[1])$(x[2])", encoded))
 end
 
 
 
 function decode(s)
-    
+    decoded = ""
+    num = ""
+    for i in eachindex(s)
+        if isdigit(s[i])
+            num = string(num, s[i])
+        else
+            if length(num) == 0
+                decoded = string(decoded, s[i])
+            else
+                decoded = string(decoded, repeat(s[i], parse(Int, num)))
+            end
+            num = ""
+        end
+    end
+    return decoded
 end
